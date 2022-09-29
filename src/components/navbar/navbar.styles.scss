@@ -1,0 +1,21 @@
+.navbar-container{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    margin:7.5px;
+    .navbar-logo-container{
+        .navbar-logo{
+            h1,h4{
+                margin:0;
+            }
+        }
+    }
+    .navbar-links-container{
+        .navbar-link{
+            text-transform:uppercase;
+            color:black;
+            font-weight:800;
+            padding:15px;
+        }
+    }
+}
