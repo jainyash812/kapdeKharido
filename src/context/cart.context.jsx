@@ -46,7 +46,6 @@ export const CartItemsProvider = ({ children }) => {
   const [cartItemTotal, setCartItemTotal] = useState(0);
 
   const addItemToCart = (product) => {
-    console.log(product);
     setCartItems(addToCart(cartItems, product));
   };
 
@@ -74,7 +73,7 @@ export const CartItemsProvider = ({ children }) => {
     addItemToCart,
     removeItemFromCart,
     cartItemCount,
-    cartItemTotal
+    cartItemTotal,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
