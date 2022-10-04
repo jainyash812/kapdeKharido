@@ -15,14 +15,11 @@ const Shop = () => {
     <>
       <h1>Shop Page</h1>
       <div className="shop-product-container">
-        {products.map(({ id, name, imageUrl, price }: ShopDataItem) => {
+        {products.map((productItem: ShopDataItem) => {
           return (
             <ProductCard
-              key={`${id}${name}`}
-              id={id}
-              name={name}
-              imageUrl={imageUrl}
-              price={price}
+              key={`${productItem.id}${productItem.name}${Math.random() * 100}`}
+              product={productItem}
             />
           );
         })}

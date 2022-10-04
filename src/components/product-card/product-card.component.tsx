@@ -9,22 +9,25 @@ interface ProductCard {
   imageUrl: string;
   price: number;
 }
-export const ProductCard = ({ id, name, imageUrl, price }: any) => {
+export const ProductCard = ({ product }: any) => {
   const { addItemToCart } = useContext(CartContext);
-  const productAddedToCart = { id, name, imageUrl, price };
+  const { name, imageUrl, price } = product;
+
   const addItemtoOurCart = () => {
-    addItemToCart(productAddedToCart);
+    addItemToCart(product);
   };
   return (
-    <div className="product-card">
-      <img src={imageUrl} />
-      <div className="product-card-content">
-        <span>{name}</span>
-        <span>₹{price}</span>
+    <>
+      <div className="product-card">
+        <img src={imageUrl} />
+        <div className="product-card-content">
+          <span>{name}</span>
+          <span>₹{price}</span>
+        </div>
+        <Button buttonType="inverted" onClick={addItemtoOurCart}>
+          Add to Cart
+        </Button>
       </div>
-      <Button buttonType="inverted" onClick={addItemtoOurCart}>
-        Add to Cart
-      </Button>
-    </div>
+    </>
   );
 };
