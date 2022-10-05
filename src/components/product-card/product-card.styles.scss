@@ -26,10 +26,8 @@
         button{
             display:block;
         }
-        & img{
-            transform:rotate(360deg);
-            transition:transform 1s ease-in-out;
-        }
+        padding:10px;
+        box-shadow: 0.5rem 0.5rem red, -0.5rem -0.5rem red;
     }
     .product-card-content{
         display:flex;

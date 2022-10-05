@@ -6,12 +6,13 @@ export const ShoppingCart = () => {
   const { cartItems, addItemToCart, removeItemFromCart, cartItemTotal } =
     useContext(CartContext);
 
-  console.log(cartItems, "cartItems");
   return (
     <div className="shopping-cart-container">
-      <h1>
-        {cartItems.length > 0 ? "" : "Currently there are no items in cart."}
-      </h1>
+      {cartItems.length > 0 ? (
+        ""
+      ) : (
+        <h1>Currently there are no items in cart.</h1>
+      )}
       <div className="shopping-cart-item-container">
         {cartItems.map((cartItem: any) => {
           const { id, name, imageUrl, quantity } = cartItem;
@@ -40,9 +41,11 @@ export const ShoppingCart = () => {
           );
         })}
       </div>
-      <h2 className="shopping-cart-total">
-        {cartItems.length === 0 ? "" : `Total : ${cartItemTotal}`}
-      </h2>
+      {cartItems.length === 0 ? (
+        ""
+      ) : (
+        <div className="shopping-cart-bill">{`Total : ₹ ${cartItemTotal}`}</div>
+      )}
     </div>
   );
 };

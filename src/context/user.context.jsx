@@ -5,7 +5,9 @@ import {
 } from "../helper/firebase/firebase.helper";
 
 export const UserContext = createContext({
-  userDetails: null,
+  userDetails: {
+    email: "",
+  },
   setUserDetails: (value) => null,
 });
 

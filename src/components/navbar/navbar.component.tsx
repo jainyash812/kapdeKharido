@@ -8,12 +8,14 @@ import "./navbar.styles.scss";
 const NavBar = () => {
   const { userDetails } = useContext(UserContext);
   const { cartItemCount } = useContext(CartContext);
+
+  console.log("userDetails", userDetails);
   return (
     <>
       <div className="navbar-container">
         <Link to="/" className="navbar-logo-container">
           <div className="navbar-logo">
-            {/* <h1>Kapde Kharido</h1> */}
+            <h1>KKCart</h1>
             <h4>Trust it Feel it</h4>
           </div>
         </Link>
@@ -21,18 +23,20 @@ const NavBar = () => {
           <Link className="navbar-link" to="/shop">
             Shop
           </Link>
-          {userDetails ? (
-            <span className="navbar-link" onClick={signOutUser}>
-              Logout
-            </span>
-          ) : (
-            <Link className="navbar-link" to="/auth">
-              Login
-            </Link>
-          )}
+          <>
+            {userDetails ? (
+              <span className="navbar-link" onClick={signOutUser}>
+                Logout
+              </span>
+            ) : (
+              <Link className="navbar-link" to="/auth">
+                Login
+              </Link>
+            )}
+          </>
           <Link className="navbar-link" to="/checkout">
-            <AiOutlineShoppingCart />
-            KK CART {cartItemCount}
+            <AiOutlineShoppingCart className="navbar-cart-icon" />
+            <span className="navbar-cart-total-count">{cartItemCount}</span>
           </Link>
         </div>
       </div>

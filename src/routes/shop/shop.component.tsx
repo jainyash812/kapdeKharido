@@ -1,29 +1,19 @@
 import { useContext } from "react";
+import { Route, Routes } from "react-router-dom";
+import CategorySection from "../../components/category-section/catergory-section.component";
 import { ProductCard } from "../../components/product-card/product-card.component";
-import { ProductContext } from "../../context/products.context";
+import { CategoryContext } from "../../context/categories.context";
+import MultipleCategorySection from "../multiple-category-section/multiple-category-section.component";
+import SingleCategorySection from "../single-category-section/single-category-section.component";
 import "./shop.styles.scss";
-interface ShopDataItem {
-  id: number;
-  name: string;
-  imageUrl: string;
-  price: number;
-}
-const Shop = () => {
-  const { products } = useContext(ProductContext);
 
+const Shop = () => {
   return (
     <>
-      <h1>Shop Page</h1>
-      <div className="shop-product-container">
-        {products.map((productItem: ShopDataItem) => {
-          return (
-            <ProductCard
-              key={`${productItem.id}${productItem.name}${Math.random() * 100}`}
-              product={productItem}
-            />
-          );
-        })}
-      </div>
+      <Routes>
+        <Route index element={<MultipleCategorySection />} />
+        <Route path=":category" element={<SingleCategorySection />} />
+      </Routes>
     </>
   );
 };

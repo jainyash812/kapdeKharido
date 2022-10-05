@@ -22,7 +22,7 @@ export const ProductCard = ({ product }: any) => {
         <img src={imageUrl} />
         <div className="product-card-content">
           <span>{name}</span>
-          <span>₹{price}</span>
+          <span>{`₹${price * 70}`}</span>
         </div>
         <Button buttonType="inverted" onClick={addItemtoOurCart}>
           Add to Cart

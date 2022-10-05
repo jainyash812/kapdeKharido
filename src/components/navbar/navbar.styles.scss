@@ -2,21 +2,38 @@
     display:flex;
     align-items:baseline;
     justify-content:space-between;
-    margin:7.5px;
+    margin-bottom:7.5px;
     .navbar-logo-container{
         .navbar-logo{
+            font-family: cursive;
             h1,h4{
                 margin:0;
             }
         }
     }
     .navbar-links-container{
+        display:flex;
+        flex-direction:row;
+        align-items:center;
         .navbar-link{
             text-transform:uppercase;
             color:black;
             font-weight:800;
             padding:15px;
             cursor:pointer;
+            position:relative;
+            .navbar-cart-icon{
+                font-size:20px;
+                margin-top:2px;
+            }
+            .navbar-cart-total-count{
+                background: red;
+                padding: 5px 10px;
+                border-radius: 50%;
+                position: absolute;
+                top: 2px;
+                color:white;
+            }
         }
     }
 }
