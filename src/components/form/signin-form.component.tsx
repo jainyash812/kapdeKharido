@@ -10,6 +10,7 @@ const defaultFormFields = {
   password: "",
 };
 const SignInForm = () => {
+  const [errorMsg, setErrorMsg] = useState("");
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
   const navigate = useNavigate();
@@ -30,10 +31,10 @@ const SignInForm = () => {
     } catch (error: any) {
       switch (error.code) {
         case "auth/wrong-password":
-          alert("incorrect password for email");
+          setErrorMsg("Incorrect password");
           break;
         case "auth/user-not-found":
-          alert("no user associated with this email");
+          setErrorMsg("User not registered");
           break;
         default:
           console.log(error);
@@ -90,7 +91,20 @@ const SignInForm = () => {
             Password
           </label>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-around" }}>
+        <div>
+          <span
+            className={errorMsg !== "" ? "form-error" : "form-error-no-padding"}
+          >
+            {errorMsg}
+          </span>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            marginTop: "20px",
+          }}
+        >
           <Button buttonType="inverted">Log In</Button>
           <Button buttonType="google" onClick={loginWithGoogle}>
             Login with Google

@@ -88,14 +88,12 @@ export const createUserDocument = async (
     const { displayName, email } = userAuth;
     const createdAt = new Date();
     try {
-      const documentInsertedUser = await setDoc(userDoc, {
+      await setDoc(userDoc, {
         displayName,
         email,
         createdAt,
         ...additionalInformation,
       });
-      console.log("additionalInformation", additionalInformation);
-      console.log("userAuth", userAuth);
     } catch (error) {
       console.log("error creating a user in firestore db", error.message);
     }

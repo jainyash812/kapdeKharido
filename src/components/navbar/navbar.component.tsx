@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/cart.context";
 import { UserContext } from "../../context/user.context";
 import { signOutUser } from "../../helper/firebase/firebase.helper";
@@ -8,8 +8,11 @@ import "./navbar.styles.scss";
 const NavBar = () => {
   const { userDetails } = useContext(UserContext);
   const { cartItemCount } = useContext(CartContext);
-
-  console.log("userDetails", userDetails);
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    signOutUser();
+    navigate("/auth");
+  };
   return (
     <>
       <div className="navbar-container">
@@ -25,7 +28,7 @@ const NavBar = () => {
           </Link>
           <>
             {userDetails ? (
-              <span className="navbar-link" onClick={signOutUser}>
+              <span className="navbar-link" onClick={handleLogout}>
                 Logout
               </span>
             ) : (
