@@ -25,6 +25,18 @@ a {
      .navbar-logo{
             font-family: cursive;
     }
+    .authentication-container {
+        flex-direction: column !important;
+    }
+    .login-buttons-container{
+        flex-direction:column !important;
+        .button-container{
+            margin-bottom:10px !important;
+        }
+    }
+    .category-container .category-body-container {
+        padding: 0 15px !important;
+    }
     .category-section-products{
         // flex-wrap:wrap !important;
         flex-direction:column !important;

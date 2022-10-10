@@ -19,7 +19,7 @@ export const ProductCard = ({ product }: any) => {
   return (
     <>
       <div className="product-card">
-        <img src={imageUrl} />
+        <img src={imageUrl} loading="lazy" />
         <div className="product-card-content">
           <span>{name}</span>
           <span>{`₹${price * 70}`}</span>

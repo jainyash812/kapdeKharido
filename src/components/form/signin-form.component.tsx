@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
   signInWithGooglePopup,
   signInAuthUserWithEmailAndPassword,
+  signInAsGuest,
 } from "../../helper/firebase/firebase.helper";
 import Button from "../button/button.component";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +19,10 @@ const SignInForm = () => {
     setFormFields(defaultFormFields);
   };
 
+  const handleGuestLogin = () => {
+    signInAsGuest();
+    navigate("/");
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -98,19 +103,18 @@ const SignInForm = () => {
             {errorMsg}
           </span>
         </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-around",
-            marginTop: "20px",
-          }}
-        >
+        <div className="login-buttons-container">
           <Button buttonType="inverted">Log In</Button>
           <Button buttonType="google" onClick={loginWithGoogle}>
             Login with Google
           </Button>
         </div>
       </form>
+      <div className="guest-login-button">
+        <Button buttonType="inverted" onClick={handleGuestLogin}>
+          Log In As Guest
+        </Button>
+      </div>
     </div>
   );
 };

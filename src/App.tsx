@@ -4,6 +4,7 @@ import NavBar from "./components/navbar/navbar.component";
 import Authentication from "./routes/authentication/auth.component";
 import Shop from "./routes/shop/shop.component";
 import { ShoppingCart } from "./components/cart/cart.component";
+
 const App = () => {
   return (
     <>

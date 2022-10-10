@@ -8,6 +8,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  signInAnonymously
 } from "firebase/auth";
 import {
   getFirestore,
@@ -108,6 +109,11 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
 export const signInAuthUserWithEmailAndPassword = async (email, password) => {
   return await signInWithEmailAndPassword(auth, email, password);
 };
+//signInAnonymously
+//
+export const signInAsGuest = async()=>{
+    return await signInAnonymously(auth)
+}
 
 export const signOutUser = async () => {
   await signOut(auth);

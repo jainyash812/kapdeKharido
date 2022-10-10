@@ -8,6 +8,11 @@ export const ShoppingCart = () => {
     useContext(CartContext);
 
   const { userDetails } = useContext(UserContext);
+  const getEmail = () => {
+    if (!!userDetails) {
+      return userDetails.email !== null ? userDetails.email : "Guest ";
+    } else return "Guest";
+  };
   return (
     <div className="shopping-cart-container">
       {cartItems.length > 0 ? (
@@ -16,14 +21,14 @@ export const ShoppingCart = () => {
         <h1>
           Hey{" "}
           <span style={{ fontStyle: "italic", color: "#ff6900" }}>
-            {userDetails?.email.split("@")[0].toUpperCase()}
+            {/* {!!userDetails && userDetails.email.split("@")[0].toUpperCase()} */}
+            {getEmail()}
           </span>
           {"       "}
           currently there are no items in cart.
         </h1>
       )}
       <div className="shopping-cart-item-container">
-        <img src="https://unsplash.com/photos/PH8GUKG-Do0" />
         {cartItems.map((cartItem: any) => {
           const { id, name, imageUrl, quantity } = cartItem;
           return (
@@ -54,7 +59,9 @@ export const ShoppingCart = () => {
       {cartItems.length === 0 ? (
         ""
       ) : (
-        <div className="shopping-cart-bill">{`Total : ₹ ${cartItemTotal}`}</div>
+        <div className="shopping-cart-bill">{`Total : ₹ ${
+          cartItemTotal * 70
+        }`}</div>
       )}
     </div>
   );
