@@ -31,12 +31,11 @@ const SignUpForm = () => {
     event.preventDefault();
 
     if (password !== confirmPassword) {
-      alert("passwords do not match");
+      setError("Password and Confirm password do not match");
       return;
     }
 
     try {
-      console.log("formData", formData);
       const { user } = await createAuthUserWithEmailAndPassword(
         email,
         password
@@ -46,17 +45,18 @@ const SignUpForm = () => {
     } catch (error: any) {
       if (error.code === "auth/email-already-in-use") {
         //alert("Cannot create user, email already in use");
-        setError(error.code);
+        setError("We’re sorry. This email already exists.");
       } else {
-        console.log("user creation encountered an error", error);
+        //console.log("user creation encountered an error", error);
+        setError("Password should have at least 6 characters");
       }
+      
     }
   };
 
   return (
     <div className="form-container">
       <h1>Sign Up Form</h1>
-      <span>{error}</span>
       <form onSubmit={handleSubmit}>
         <div className="form-input-container">
           <input
@@ -66,6 +66,7 @@ const SignUpForm = () => {
             value={displayName}
             onChange={handleChange}
             className="form-input"
+            autoComplete="off"
           />
           <label
             className={`${
@@ -83,6 +84,7 @@ const SignUpForm = () => {
             value={email}
             onChange={handleChange}
             className="form-input"
+            autoComplete="off"
           />
           <label
             className={`${email.length > 0 ? "shrink" : ""} form-input-label`}
@@ -98,6 +100,7 @@ const SignUpForm = () => {
             value={password}
             onChange={handleChange}
             className="form-input"
+            autoComplete="off"
           />
           <label
             className={`${
@@ -115,6 +118,7 @@ const SignUpForm = () => {
             value={confirmPassword}
             onChange={handleChange}
             className="form-input"
+            autoComplete="off"
           />
           <label
             className={`${
@@ -124,7 +128,12 @@ const SignUpForm = () => {
             Confirm Password
           </label>
         </div>
-        <Button buttonType="inverted">Sign Up</Button>
+        <span className={error !== "" ? "form-error" : "form-error-no-padding"}>
+          {error}
+        </span>
+        <Button buttonType="inverted" style={{ marginTop: "20px" }}>
+          Sign Up
+        </Button>
       </form>
     </div>
   );

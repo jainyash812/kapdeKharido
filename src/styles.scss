@@ -19,3 +19,44 @@ a {
 * {
   box-sizing: border-box;
 }
+
+@media screen and (max-width:500px){
+    
+     .navbar-logo{
+            font-family: cursive;
+    }
+    .authentication-container {
+        flex-direction: column !important;
+    }
+    .login-buttons-container{
+        flex-direction:column !important;
+        .button-container{
+            margin-bottom:10px !important;
+        }
+    }
+    .category-container .category-body-container {
+        padding: 0 15px !important;
+    }
+    .category-section-products{
+        // flex-wrap:wrap !important;
+        flex-direction:column !important;
+    }
+    .category-section-header{
+        background:black !important;
+        color:white !important;
+        margin-bottom:5px !important;
+        padding:0 5px !important;
+        .view-more{
+            color:white !important;
+            &:hover{
+                box-shadow: 0.3rem 0.3rem red, -0.3rem -0.3rem #ccc !important;
+            }
+        }
+    }
+    // Individual Category Pages CSS like : Hats, sneakers//
+    .category-section-products-all{
+        grid-template-columns: repeat(1, 1fr) !important;
+    }
+    //----------------------------------------------------//
+
+}

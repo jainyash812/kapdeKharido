@@ -1,40 +1,45 @@
 import { useState } from "react";
 import {
   signInWithGooglePopup,
-  createUserDocument,
   signInAuthUserWithEmailAndPassword,
+  signInAsGuest,
 } from "../../helper/firebase/firebase.helper";
 import Button from "../button/button.component";
-
+import { useNavigate } from "react-router-dom";
 const defaultFormFields = {
   email: "",
   password: "",
 };
 const SignInForm = () => {
+  const [errorMsg, setErrorMsg] = useState("");
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
-
+  const navigate = useNavigate();
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
 
+  const handleGuestLogin = () => {
+    signInAsGuest();
+    navigate("/");
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await signInAuthUserWithEmailAndPassword(
+      const { user } = await signInAuthUserWithEmailAndPassword(
         email,
         password
       );
-      console.log(response);
       resetFormFields();
+      navigate("/");
     } catch (error: any) {
       switch (error.code) {
         case "auth/wrong-password":
-          alert("incorrect password for email");
+          setErrorMsg("Incorrect password");
           break;
         case "auth/user-not-found":
-          alert("no user associated with this email");
+          setErrorMsg("User not registered");
           break;
         default:
           console.log(error);
@@ -49,8 +54,8 @@ const SignInForm = () => {
   };
 
   const loginWithGoogle = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocument(user);
+    await signInWithGooglePopup();
+    navigate("/");
   };
 
   return (
@@ -65,6 +70,7 @@ const SignInForm = () => {
             value={email}
             onChange={handleChange}
             className="form-input"
+            autoComplete="off"
           />
           <label
             className={`${email.length > 0 ? "shrink" : ""} form-input-label`}
@@ -80,6 +86,7 @@ const SignInForm = () => {
             value={password}
             onChange={handleChange}
             className="form-input"
+            autoComplete="off"
           />
           <label
             className={`${
@@ -89,13 +96,25 @@ const SignInForm = () => {
             Password
           </label>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-around" }}>
+        <div>
+          <span
+            className={errorMsg !== "" ? "form-error" : "form-error-no-padding"}
+          >
+            {errorMsg}
+          </span>
+        </div>
+        <div className="login-buttons-container">
           <Button buttonType="inverted">Log In</Button>
           <Button buttonType="google" onClick={loginWithGoogle}>
             Login with Google
           </Button>
         </div>
       </form>
+      <div className="guest-login-button">
+        <Button buttonType="inverted" onClick={handleGuestLogin}>
+          Log In As Guest
+        </Button>
+      </div>
     </div>
   );
 };

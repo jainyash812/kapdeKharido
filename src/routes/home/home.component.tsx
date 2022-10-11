@@ -5,7 +5,8 @@ const Home = () => {
     {
       id: 1,
       title: "hats",
-      imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
+      //imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
+      imageUrl: "https://i.insider.com/61d337cc99a7690019de68b0",
     },
     {
       id: 2,
@@ -25,7 +26,9 @@ const Home = () => {
     {
       id: 5,
       title: "mens",
-      imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
+      //imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
+      imageUrl:
+        "https://www.iwmbuzz.com/wp-content/uploads/2020/05/check-out-virat-kohli-and-his-best-fashion-moments.jpg",
     },
   ];
 
