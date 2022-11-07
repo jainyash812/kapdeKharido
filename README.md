@@ -1,2 +1,2 @@
-# kapdeKharido
-Created with CodeSandbox
+# KKCart
+Created using React, Firebase.
